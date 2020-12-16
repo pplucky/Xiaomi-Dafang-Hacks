@@ -432,5 +432,19 @@ done
 	  # Publish updated states
 	  /system/sdcard/bin/mosquitto_pub.bin -h "$HOST" -p "$PORT" -u "$USER" -P "$PASS" -t "${TOPIC}" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -m "$(/system/sdcard/scripts/mqtt-status.sh)"
 	;;
+	
+	"${TOPIC}/onvif")
+	  /system/sdcard/bin/mosquitto_pub.bin -h "$HOST" -p "$PORT" -u "$USER" -P "$PASS" -t "${TOPIC}"/onvif ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -m "$(onvif_srvd status)"
+	;;
+
+	"${TOPIC}/onvif/set ON")
+	  onvif_srvd on
+	  /system/sdcard/bin/mosquitto_pub.bin -h "$HOST" -p "$PORT" -u "$USER" -P "$PASS" -t "${TOPIC}"/onvif ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -m "$(onvif_srvd status)"
+	;;
+
+	"${TOPIC}/onvif/set OFF")
+	  onvif_srvd off
+	  /system/sdcard/bin/mosquitto_pub.bin -h "$HOST" -p "$PORT" -u "$USER" -P "$PASS" -t "${TOPIC}"/onvif ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -m "$(onvif_srvd status)"
+	;;
   esac
 done
