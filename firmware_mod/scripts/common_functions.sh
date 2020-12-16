@@ -379,13 +379,13 @@ mqtt_status(){
 onvif_srvd(){
   case "$1" in
   on)
-	/system/sdcard/controlscripts/onvif-srvd.sh start
+	/system/sdcard/controlscripts/onvif-srvd start
 	;;
   off)
-	/system/sdcard/controlscripts/onvif-srvd.sh stop
+	/system/sdcard/controlscripts/onvif-srvd stop
 	;;
   status)
-	if /system/sdcard/controlscripts/onvif-srvd.sh status | grep -q "PID"
+	if /system/sdcard/controlscripts/onvif-srvd status | grep -q "PID"
 	then
 		echo "ON"
 	else
